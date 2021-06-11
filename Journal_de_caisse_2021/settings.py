@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'JournauxDeCaissePbrussels.apps.JournauxdecaissepbrusselsConfig',
+    'JournauxDeCaissePBrussels_Web',
 ]
 
 MIDDLEWARE = [
