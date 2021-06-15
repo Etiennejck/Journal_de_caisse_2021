@@ -18,9 +18,9 @@ class Payment(models.Model):
     date = models.DateTimeField()
     name = models.CharField(max_length=100)
     amonds = models.DecimalField(max_digits=10, decimal_places=2)
-    plate = models.charField(max_length=8)
+    plate = models.CharField(max_length=8)
 
 class Amonds(models.Model):
-    recipeFK = models.ForeignKey('Recipe', on_delete=models.CASCADE,)
-    payementFK = models.ForeignKey('Payment', on_delete=models.CASCADE,)
-    employeeFK = models.ForeignKey('Employee', on_delete=models.CASCADE,)
+    recipe_fk = models.ForeignKey('Recipe', on_delete=models.CASCADE, related_name='recipe_fk')
+    payement_fk = models.ForeignKey('Payment', on_delete=models.CASCADE,related_name='payement_fk')
+    employee_fk = models.ForeignKey('Employee', on_delete=models.CASCADE,related_name='employee_fk')
