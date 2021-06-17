@@ -10,7 +10,7 @@ from JournauxDeCaissePbrussels.models import *
 
 
 def home_page(request):
-    return render(request,"web/home_page")
+    return render(request, "web/home_page.html")
 
 def upload_file(request):
     data = {}
