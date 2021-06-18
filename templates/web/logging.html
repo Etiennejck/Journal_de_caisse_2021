@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+        font-family: 'Trebuchet MS';
+    }
+    section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(-30deg, #dccf87 0%, #eec731 50%, #587eec 50%, #362ae7 100%);
+    }
+    .box{
+        position: relative;
+        padding: 50px;
+        width: 360px;
+        height: 480px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+    }
+    .box::after{
+        content:"";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-radius: 25px;
+        pointer-events: none;
+        background:linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 15%, transparent 50%, transparent 80%, rgba(255,255,255,0.3) 100%)
+    }
+    .box .form{
+        position: relative;
+        width: 100%;
+    }
+    .box .form h2 {
+        color: #fff;
+        font-weight: 800;
+        letter-spacing: 3px;
+        margin-bottom: 30px;
+    }
+    .box .form .inputBx {
+        position: relative;
+        width: 100%;
+        margin-bottom:20px;
+    }
+    .box .form .inputBx input {
+        width: 100%;
+        outline: none;
+        border: 1px solid rgba(255,255,255,0.2);
+        background: transparent;
+        padding: 8px 10px;
+        color: ghostwhite;
+        border-radius: 10px;
+        box-shadow:inset 0px 0px 30px rgba(0,0,0,0.2);
+        font-size: 18px;
+        font-weight: 300;
+    }
+</style>
+<body>
+    <section>
+        <div class="box">
+            <div class="form">
+                <h2>Login</h2>
+                <form>
+                    <div class="inputBx">
+                        <input type="text" placeholder="Username">
+                        <img src="">
+                    </div>
+                    <div class="inputBx">
+                        <input type="password" placeholder="Password">
+                        <img src="">
+                    </div>
+                    <div class="inputBx">
+                        <input type="submit" placeholder=value="Login">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

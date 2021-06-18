@@ -23,7 +23,7 @@ def upload_file(request):
             messages.error(request,'File is not CSV type')
             return render(request,"web/upload_file.html")
         file_data = pd.read_csv(csv_file, sep=';')
-        fd = file_data[["plate_number","Charger","dateadded","Voornaam","creator_lastname"]]
+        fd = file_data[["plate_number","Charger","dateadded","Voornaam"]]
         fdi = fd.iterrows()
         data['test']=dict(fdi)
         dfdi = dict(fd)
@@ -34,3 +34,7 @@ def upload_file(request):
         messages.error(request, "Unable to upload file. " + repr(e))
 
     return render(request,"web/upload_file.html",data)
+
+def logging(request):
+
+    return render(request,"web/logging.html")
