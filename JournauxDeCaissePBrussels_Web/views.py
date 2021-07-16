@@ -1,11 +1,11 @@
 import logging
-
+#from django_auth_ldap.backend import LDAPBackend
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 import pandas as pd
 from django.urls import reverse
-
+import uvicorn
 from JournauxDeCaissePbrussels.models import *
 
 
@@ -19,14 +19,15 @@ def upload_file(request):
     #if not GET
     try:
         csv_file = request.FILES["csv_file"]
+        separation = request.POST['sep']
         if not csv_file.name.endswith('.csv'):
             messages.error(request,'File is not CSV type')
             return render(request,"web/upload_file.html")
-        file_data = pd.read_csv(csv_file, sep=';')
-        fd = file_data[["plate_number","Charger","dateadded","Voornaam"]]
-        fdi = fd.iterrows()
+        file_data = pd.read_csv(csv_file, sep=separation, encoding='utf-8')
+        #fd = file_data[["plate_number","Charger","dateadded","Voornaam"]]
+        fdi = file_data.iterrows()
         data['test']=dict(fdi)
-        dfdi = dict(fd)
+        dfdi = dict(file_data)
         data['test2'] = dfdi
         #Payment.objects.create(**dict(fdi))
     except Exception as e:
