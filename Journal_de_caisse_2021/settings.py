@@ -29,20 +29,52 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 AUTHENTICATION_BACKENDS = [
-   'Journal_de_caisse_2021.authentication_backend.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'Journal_de_caisse_2021.authentication_backend.AuthenticationBackend',
+    'django_auth_adfs.backend.AdfsAccessTokenBackend',
 ]
+
+# Client secret is not public information. Should store it as an environment variable.
+
+client_id = '391146f9-21f8-4e38-9482-7f5b987d456a'
+#client_secret = '2cc80fab-59cd-4fcc-b7fc-1c9cb6318337'
+client_secret = 'M7A7Q~nBifI4LOjgVuyMjxrcedF6T4F4NgGxC'
+tenant_id = 'd3903a2e-648b-46ac-8bad-c2a79934fa86'
+
+
+AUTH_ADFS = {
+    #"SERVER":'https://aad.portal.azure.com',
+    'AUDIENCE': client_id,
+    'CLIENT_ID': client_id,
+    'CLIENT_SECRET': client_secret,
+    'CLAIM_MAPPING': {'first_name': 'given_name',
+                      'last_name': 'family_name',
+                      'email': 'upn'},
+    'GROUPS_CLAIM': 'roles',
+    'MIRROR_GROUPS': True,
+    'USERNAME_CLAIM': 'upn',
+    'TENANT_ID': tenant_id,
+    'RELYING_PARTY_ID': client_id,
+    'LOGIN_EXEMPT_URLS': ["api/", "logging/", "admin/"],
+    #'CREATE_NEW_USERS': True,
+}
+LOGIN_URL = "django_auth_adfs:login"
+LOGIN_REDIRECT_URL = "http://localhost:8000"
+
 # Application definition
 
 INSTALLED_APPS = [
+    'JournauxDeCaissePBrussels_Web',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels',
     'JournauxDeCaissePbrussels.apps.JournauxdecaissepbrusselsConfig',
-    'JournauxDeCaissePBrussels_Web',
+    'django_auth_adfs',
+    'sslserver',
+
 ]
 
 MIDDLEWARE = [
@@ -54,7 +86,10 @@ MIDDLEWARE = [
     'Journal_de_caisse_2021.authentication_middleware.AutomaticUserLoginMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_auth_adfs.middleware.LoginRequiredMiddleware',
 ]
+
+#CUSTOM_FAILED_RESPONSE_VIEW = 'dot.path.to.custom.views.login_failed'
 
 ROOT_URLCONF = 'Journal_de_caisse_2021.urls'
 

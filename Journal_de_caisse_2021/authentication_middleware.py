@@ -1,6 +1,7 @@
 from django.contrib import auth
 from django.contrib.auth.middleware import MiddlewareMixin
 from django.http import HttpResponseForbidden
+from django.shortcuts import render
 
 
 class AutomaticUserLoginMiddleware(MiddlewareMixin):
@@ -9,7 +10,7 @@ class AutomaticUserLoginMiddleware(MiddlewareMixin):
         if not AutomaticUserLoginMiddleware._is_user_authenticated(request):
             user = auth.authenticate(request)
             if user is None:
-                return HttpResponseForbidden()
+                return user
 
             request.user = user
             auth.login(request, user)

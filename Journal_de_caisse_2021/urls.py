@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from Journal_de_caisse_2021 import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('JournauxDeCaissePBrussels_Web.urls')),
+    path('oauth2/', include('django_auth_adfs.urls')),
+    path('logging/', views.logging),
 ]

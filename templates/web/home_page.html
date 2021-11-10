@@ -41,6 +41,7 @@
         cursor: pointer;
         box-shadow: 10px 10px 30px rgba(0,0,0,0.35);
         border-radius:50px;
+        text-decoration: none;
     }
     .block {
         position: absolute;
@@ -58,10 +59,13 @@
     .block:nth-child(3n+3){
         background: rgb(1, 134, 253);
     }
+    a{
+        text-decoration:none
+    }
 </style>
 <body>
     <div class="container">
-        <button onclick="generate()"><a href="{% url 'upload_file' %}"> Upload </a></button>
+        <button onclick="generate()"><a href="{% url 'upload_file' %}"> UPLOAD </a></button>
     </div>
 
 

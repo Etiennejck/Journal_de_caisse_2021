@@ -75,12 +75,13 @@
             <div class="form">
                 <h2>Login</h2>
                 <form>
+                    {% csrf_token %}
                     <div class="inputBx">
-                        <input type="text" placeholder="Username">
+                        <input name="Username" type="text" placeholder="Username">
                         <img src="">
                     </div>
                     <div class="inputBx">
-                        <input type="password" placeholder="Password">
+                        <input name="Password" type="password" placeholder="Password">
                         <img src="">
                     </div>
                     <div class="inputBx">
@@ -93,6 +94,17 @@
 
 <script>
 
+    // Connect to the server
+    $ws("ws://localhost:8080").ready(function($ws, ws) {
+        // When connection is made, send a message
+        $ws.emit("showMessage", {
+        msg: "WebSockets are fun!",
+    });
+    // And react to incoming messages
+    $ws.on("showMessage", function(data) {
+        alert(data.message);
+    });
+    });
 </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
-import logging
+
 #from django_auth_ldap.backend import LDAPBackend
+import asyncio
+import logging
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -7,10 +9,14 @@ import pandas as pd
 from django.urls import reverse
 import uvicorn
 from JournauxDeCaissePbrussels.models import *
+from Journal_de_caisse_2021 import authentication_backend
 
 
 def home_page(request):
+
     return render(request, "web/home_page.html")
+
+
 
 def upload_file(request):
     data = {}
@@ -36,6 +42,27 @@ def upload_file(request):
 
     return render(request,"web/upload_file.html",data)
 
-def logging(request):
 
-    return render(request,"web/logging.html")
+# def logging(request):
+# #     #connexion = request.POST['']
+#      return render(request,"web/logging.html")
+
+
+async def client_handler(websocket,uri):
+    # Send a message
+    websocket.send('Hello, world')
+    # Wait for a reply
+    msg = websocket.recv()
+
+
+async def client_handler2(websocket, uri):
+    # Send a message
+    websocket.send('Hello world')
+    # Read all messages while the socket is open
+    while True:
+        msg = websocket.recv()
+        if msg is None:
+            # Oops, the socket has closed
+            return
+    # Fancy message processing
+        print('got message:', msg)
