@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'JournauxDeCaissePbrussels.apps.JournauxdecaissepbrusselsConfig',
     'django_auth_adfs',
     'sslserver',
+    'Parkingrights',
 
 ]
 
