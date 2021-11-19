@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+import environ
 
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,10 +40,9 @@ AUTHENTICATION_BACKENDS = [
 
 # Client secret is not public information. Should store it as an environment variable.
 
-client_id = '391146f9-21f8-4e38-9482-7f5b987d456a'
-#client_secret = '2cc80fab-59cd-4fcc-b7fc-1c9cb6318337'
-client_secret = 'M7A7Q~nBifI4LOjgVuyMjxrcedF6T4F4NgGxC'
-tenant_id = 'd3903a2e-648b-46ac-8bad-c2a79934fa86'
+client_id = env('CLIENT_ID')
+client_secret = env('CLIENT_SECRET')
+tenant_id = env('TENANT_ID')
 
 
 AUTH_ADFS = {
@@ -59,7 +62,7 @@ AUTH_ADFS = {
     #'CREATE_NEW_USERS': True,
 }
 LOGIN_URL = "django_auth_adfs:login"
-LOGIN_REDIRECT_URL = "http://localhost:8000"
+LOGIN_REDIRECT_URL = "/"
 
 # Application definition
 

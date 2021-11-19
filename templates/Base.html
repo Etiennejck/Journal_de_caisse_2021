@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sticb505_ CGBD - 2021/2022</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+    <style>
+         body {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+              }
+
+              main {
+                flex: 1 0 auto;
+              }
+        footer{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="blue darken-3">
+        <div class="nav-wrapper container">
+          <a href="#" class="brand-logo left">PB Webtools</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{% url 'home'  %}">Applications</a></li>
+            <li><a href="{% url 'log_out'  %}"> Log out </a></li>
+          </ul>
+        </div>
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+</body>
+<footer>
+    <span>© 2021 - <a href="https://parking.brussels">Parking.Brussels</a></span>
+</footer>
+</html>
