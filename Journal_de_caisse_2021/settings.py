@@ -58,7 +58,7 @@ AUTH_ADFS = {
     'USERNAME_CLAIM': 'upn',
     'TENANT_ID': tenant_id,
     'RELYING_PARTY_ID': client_id,
-    'LOGIN_EXEMPT_URLS': ["api/", "logging/", "admin/"],
+    'LOGIN_EXEMPT_URLS': ["logging/", "admin/"],
     #'CREATE_NEW_USERS': True,
 }
 LOGIN_URL = "django_auth_adfs:login"

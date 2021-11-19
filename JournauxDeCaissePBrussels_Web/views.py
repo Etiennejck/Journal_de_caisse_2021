@@ -19,7 +19,10 @@ from Journal_de_caisse_2021 import authentication_backend
 def home_page(request):
     return render(request, "web/home_page.html")
 
-
+def frame_data(request):
+    Employed = pd.DataFrame({
+        'first_name': []
+    })
 
 def upload_file(request):
     data = {}
@@ -38,6 +41,20 @@ def upload_file(request):
         data['test']=dict(fdi)
         dfdi = dict(file_data)
         data['test2'] = dfdi
+
+
+        Payement = pd.DataFrame({
+            'date': [file_data['8. Date valeur']],
+            'name': [file_data['4. Nom et adresse contrepartie']],
+            'amonds':[file_data['9. Montant']],
+            'plate': [file_data['Plaque']]
+        })
+
+        payement = pd.DataFrame(file_data)
+
+        print(Payement.loc[:,['date','name','amonds','plate']])
+        data['payement'] = payement.to_html #renvoi un tableau en html
+        data['payement2'] = payement.to_dict()
         #Payment.objects.create(**dict(fdi))
     except Exception as e:
         logging.getLogger("error_logger").error("Unable to upload file. " + repr(e))

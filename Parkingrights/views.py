@@ -1,10 +1,4 @@
-import os
-import environ
 from django.shortcuts import render
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate
-env = environ.Env()
-environ.Env.read_env()
 
 # Create your views here.
 def parkingrights(request):
