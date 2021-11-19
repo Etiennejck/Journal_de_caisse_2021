@@ -3,17 +3,20 @@
 import asyncio
 import logging
 from django.contrib import messages
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import pandas as pd
+
 from django.urls import reverse
 import uvicorn
 from JournauxDeCaissePbrussels.models import *
 from Journal_de_caisse_2021 import authentication_backend
 
 
-def home_page(request):
 
+def home_page(request):
     return render(request, "web/home_page.html")
 
 
@@ -42,10 +45,21 @@ def upload_file(request):
 
     return render(request,"web/upload_file.html",data)
 
+@login_required
+def home(request):
+#     #connexion = request.POST['']
 
-# def logging(request):
-# #     #connexion = request.POST['']
-#      return render(request,"web/logging.html")
+     return render(request,"web/home.html")
+
+
+def log_out(request):
+    response = HttpResponseRedirect(request, 'home')
+    response.set_cookies('sessionid', 0)
+    #
+    # # response = redirect('home')
+    # # response.delete_cookie()
+    return response
+
 
 
 async def client_handler(websocket,uri):
